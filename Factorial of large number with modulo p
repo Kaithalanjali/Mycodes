@@ -1,0 +1,50 @@
+//concept used 
+// Largest power of x divides n!
+// Fastest exponentiation
+// Modulo concept
+
+from seive we will get primes less than n 
+for modulating p - simple use below givrn functions 
+
+
+int modfact(int n,int p)
+{
+if(n>=p) return 0;
+int res =1;
+bool isPrime[n+1] = seivefunction(n);
+
+for(int i=2;i<=n;i++){
+if(isPrime[i]){
+ int k = largestpower(n,i);
+ res = res*power(i,k,p)%p;
+ }
+ }
+ return res;
+ }
+
+
+
+
+
+int largest power(int n,int x){
+int ans = 0;
+//calculating ans = n/x + n/x*x + n/x*x*x ...
+while(n){
+n=n/x;
+ans+=ans;
+}
+return ans;
+}
+
+int power(int x,int y,iny p){
+int res=1;
+x=x%p;
+while(y>0){
+if(y&1){
+res =(res*x)%p;
+}
+y=y>>1;
+x=(x*x)%p;
+}
+return res;
+}
