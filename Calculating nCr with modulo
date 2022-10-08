@@ -1,0 +1,18 @@
+int nCr(int n,int r){
+vector<long long> v(n+1,1);
+for(int i=2;i<=n;i++){
+v[i]=i*v[i-1];
+}
+long long ans =1;
+ans = (v[n]%m)*(power(v[r]*v[n-r] , m-2)%m)%m;
+
+
+// here this formula has been applied
+// (X/Y)%m = ( (X%m)*(power(y,(m-2))%m)%m
+
+
+
+return (int)ans;
+
+
+//here power func. should be exponential power func.
