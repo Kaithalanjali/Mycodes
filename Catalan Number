@@ -1,3 +1,4 @@
+//Time complexity - O(n2)
 // Catalan numbers are defined as a mathematical sequence that consists of positive integers,
 // which can be used to find the number of possibilities of various combinations. 
 //formula => Cn = (2n!)/((n+1)!*n!)
