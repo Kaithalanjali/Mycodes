@@ -1,0 +1,91 @@
+Problem link - https://practice.geeksforgeeks.org/problems/shortest-path-in-a-binary-maze-1655453161/1
+
+//{ Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution {
+  public:
+  bool isvalid(int i,int j,int n, int m){
+      return (i>=0 && i<n && j>=0 && j<m);
+  }
+    int shortestPath(vector<vector<int>> &grid, pair<int, int> source,
+                     pair<int, int> destination) {
+        // code here
+        int n = grid.size();
+        int m = grid[0].size();
+        if(grid[source.first][source.second]!=1) return -1;
+        map<pair<int,int>,int> dist;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                pair<int,int> t= {i,j};
+                dist[t]=INT_MAX;
+            }
+        }
+         pair<int,int> t= {source.first,source.second};
+        dist[t]=0;
+        //priority_queue< pair<int, pair<int,int>>, vector<pair<int, pair<int,int>>>, greater<pair<int, pair<int,int>>>> pq;
+        queue<pair<int, pair<int,int>>> pq;
+        pq.push({0,{source.first, source.second}});
+        int dx[4]={-1,1,0,0};
+        int dy[4]={0,0,1,-1};
+        while(!pq.empty()){
+            int size = pq.size();
+            while(size--){
+               int prevdist = pq.front().first;
+            int prevx = pq.front().second.first;
+            int prevy = pq.front().second.second;
+            grid[prevx][prevy]=0;
+            pq.pop();
+            if(prevx==destination.first && prevy==destination.second){
+                continue;
+            }
+            for(int d=0;d<4;d++){
+                if(isvalid(prevx + dx[d], prevy + dy[d], n,m) && grid[prevx+dx[d]][prevy + dy[d]]==1){
+                    pair<int,int> temp = {prevx + dx[d],prevy + dy[d]};
+                    if(dist[temp]> prevdist+1){
+                        dist[temp]=prevdist+1;
+                        pq.push({dist[temp],temp});
+                    }
+                }
+            } 
+            }
+            
+        }
+        
+        return dist[destination]==INT_MAX?-1:dist[destination];
+    }
+};
+
+
+//{ Driver Code Starts.
+int main() {
+
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+        vector<vector<int>> grid(n, vector<int>(m));
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cin >> grid[i][j];
+            }
+        }
+
+        pair<int, int> source, destination;
+        cin >> source.first >> source.second;
+        cin >> destination.first >> destination.second;
+        Solution obj;
+        cout << obj.shortestPath(grid, source, destination) << endl;
+    }
+}
+
+// } Driver Code Ends
