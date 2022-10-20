@@ -1,1 +1,52 @@
 
+// As when we do pattern searcing with naive approach, we do in O(n*(n-m)) because on getting a mismatch we start it from i-j position
+// In KMP we keep a track of Longest prefix which is also a proper suffix in a table called LPS
+
+// Here is the code for the LPA table
+void computeLPAArray(string pat, int M, vector<int> LPS){
+    //size of lps table and the pattern will same
+    int len =0;
+    lps[0] =0;  // always same
+    int i=1;
+    while(i<M){
+        if(pat[i] == pat[len]){
+            len++;
+            pat[i]=len;
+            i++;
+        }else{
+            if(len!=0){
+                len = lps[i-1];
+            }else{
+                lps[i]=0;
+                i++;
+            }
+        }
+    }
+}
+
+
+
+//utilising the lps table for searcing pattern in string whose N >= M
+void KMPSearch(string pat, string txt){
+    int M = pat.size();
+    int N = txt.size();
+    vector<int> LPS(M);
+    computeLPSArray(pat,M,LPS);
+    int i=0;
+    int j=0;
+    while((N-i)>=(M-j)){
+        if(pat[j]==txt[i]){
+            j++;
+            i++;
+        }
+        if(j==M){
+            cout<<"Patern Found at index"<< i-j;
+        }else if(i<N && pat[j]!=txt[i]){
+            if(j!=0){
+                j=lps[j-1];
+            }else{
+                i=i+1;
+            }
+        }
+    }
+}
