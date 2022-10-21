@@ -1,0 +1,15 @@
+//Premutations
+
+void solve(int index,vector<vector<int>> &ans,vector<int> path, vector<int> num){
+    if(index==num.size()){
+        ans.push_back(num);
+        return;
+    }
+    
+   for(int i=index;i<num.size();i++){
+        swap(num[i],num[index]);
+        solve(index+1,ans,path,num);
+        swap(num[i],num[index]);
+    }
+}
+
