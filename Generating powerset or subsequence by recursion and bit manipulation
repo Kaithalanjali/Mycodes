@@ -1,5 +1,5 @@
 //By bit
-
+//Time complexity O(2^n) valid for only n<20
 vector<string> subsequences(string str){
 
    vector<string>ans;
@@ -18,6 +18,7 @@ return ans;
 }
 
 //By recursion
+// Time complexity O(2^n) 
 void solve(vector<string>& ans, string str, string output, int i) {
    //base case
    if(i>=str.length()) {
