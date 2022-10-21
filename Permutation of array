@@ -1,5 +1,5 @@
 //Premutations
-
+Time complexity O(n)
 void solve(int index,vector<vector<int>> &ans,vector<int> path, vector<int> num){
     if(index==num.size()){
         ans.push_back(num);
