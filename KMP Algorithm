@@ -11,7 +11,7 @@ void computeLPAArray(string pat, int M, vector<int> LPS){
     while(i<M){
         if(pat[i] == pat[len]){
             len++;
-            pat[i]=len;
+            lps[i]=len;
             i++;
         }else{
             if(len!=0){
