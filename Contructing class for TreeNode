@@ -1,0 +1,59 @@
+class node{
+    public:
+    int data;
+    node* left;
+    node* right;
+    node(int a){
+        data=a;
+        left =NULL;
+        right =NULL;
+    }
+};
+
+/*Differentiation between class and structure
+In C++, a structure works the same way as a class, except for just two small differences. The most important of them is hiding implementation details. A structure will by default not hide its implementation details from whoever uses it in code, while a class by default hides all its implementation details and will therefore by default prevent the programmer from accessing them. The following table summarizes all of the fundamental differences*/
+
+**********************************Class Syntax****************************************************
+class ClassName {
+private:
+    member1;
+    member2;
+
+public:
+    member3;
+    .
+    .
+    memberN;
+};
+
+
+******************************Structure syntax******************************************************
+struct StructureName {                             
+    member1;
+    member2;
+    .
+    .
+    .
+    memberN;
+};
+
+*****************Deriving child struct************************************************************
+
+struct Base {
+public:
+    int x;
+};
+ 
+// is equivalent to
+// struct Derived : public Base {}
+struct Derived : Base {
+public:
+    int y;
+};
+
+//same for class
+
+class  <derived_class_name> : <access-specifier> <base_class_name>
+{
+        //body
+}
